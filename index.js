@@ -135,7 +135,7 @@ exports.pipeBuilder = function (pipesArray, skipDefaultListeners) {
         if (i === 0) {
             executingPipe = currentLazyPipe();
         } else {
-            executingPipe.pipe(currentLazyPipe());
+            executingPipe = executingPipe.pipe(currentLazyPipe());
         }
     }
     return executingPipe;
