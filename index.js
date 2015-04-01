@@ -119,6 +119,12 @@ exports.pipeBuilder = function (pipesArray, skipDefaultListeners) {
         var currentPipeInformation = pipesArray[i];
         var pipeName = currentPipeInformation.name;
         var pipeFunction = currentPipeInformation.func;
+        if (typeof pipeName !== 'string') {
+            throw Error('name should be string');
+        }
+        if (typeof pipeFunction !== 'function') {
+            throw Error('func should be a function');
+        }
         var pipeListeners = currentPipeInformation.listeners;
 
         lazyPipesMap[pipeName] = exports.lazyPipeFactory(pipeFunction, calculateFinalListeners(pipeListeners, defaultFactories, pipeName));
@@ -137,3 +143,11 @@ exports.pipeBuilder = function (pipesArray, skipDefaultListeners) {
     return executingPipe;
 
 };
+
+exports.createPipeStepObject = function (name, func, listeners) {
+    return {
+        name: name,
+        func: func,
+        listeners: listeners
+    };
+}

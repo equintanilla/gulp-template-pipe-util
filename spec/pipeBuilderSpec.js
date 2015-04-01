@@ -85,10 +85,9 @@ describe("pipe Builder", function () {
         ];
 
         gulpPipeUtils.pipeBuilder(taskDescription, true)
-            .on('finish',function(){
+            .on('finish', function () {
                 done();
             });
-
 
 
     });
@@ -117,11 +116,48 @@ describe("pipe Builder", function () {
         ];
 
         var pipe = gulpPipeUtils.pipeBuilder(taskDescription)
-            .on('error',function(){
+            .on('error', function () {
                 expect(errorCallbacksCalled).toBe(expectedErrorsCallled);
                 done();
             });
-        pipe.emit('error',new Error('something weng wrong'));
+        pipe.emit('error', new Error('something weng wrong'));
+
+    });
+
+    it('should throw on lacking name', function () {
+
+
+        var taskDescription = [
+            {
+                func: function () {
+                    return gulp.src('./test/fixtures/dummy');
+                }
+
+            }
+
+        ];
+
+        expect(function () {
+            gulpPipeUtils.pipeBuilder(taskDescription)
+        }).toThrow();
+
+
+    });
+    it('should throw on lacking func', function () {
+
+
+        var taskDescription = [
+            {
+                name: 'random name'
+
+            }
+
+        ];
+
+        expect(function () {
+            gulpPipeUtils.pipeBuilder(taskDescription)
+        }).toThrow();
+
 
     });
 });

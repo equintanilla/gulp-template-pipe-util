@@ -1,6 +1,6 @@
 {
   "name": "gulp-template-pipe-util",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "utilities to create streams and add similar event listeners",
   "main": "index.js",
   "scripts": {
