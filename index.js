@@ -102,8 +102,6 @@ var calculateFinalListeners = function (listeners, defaultFactories, pipeName) {
         }
 
     }
-    console.log('final listeners');
-    console.log(finalListeners);
     return finalListeners;
 };
 
