@@ -1,0 +1,33 @@
+{
+  "name": "gulp-template-pipe-util",
+  "version": "0.0.1",
+  "description": "utilities to create streams and add similar event listeners",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/equintanilla/gulp-template-pipe-util"
+  },
+  "dependencies": {
+    "gulp": "3.8.11",
+    "gulp-util": "^3.0.4",
+    "lazypipe": "0.2.2",
+    "pretty-hrtime": "1.0.0"
+  },
+  "devDependencies": {
+    "jasmine": "2.2.1"
+  },
+  "keywords": [
+    "gulp",
+    "error-handling",
+    "utilities"
+  ],
+  "author": "E Quintanilla <equintanillacode@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/equintanilla/gulp-template-pipe-util/issues"
+  },
+  "homepage": "https://github.com/equintanilla/gulp-template-pipe-util"
+}
