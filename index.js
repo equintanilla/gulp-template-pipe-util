@@ -105,13 +105,12 @@ var calculateFinalListeners = function (listeners, defaultFactories, pipeName) {
     return finalListeners;
 };
 
-exports.pipeBuilder = function (pipesArray, skipDefaultListeners) {
+exports.createLazyPipeMap = function (pipesArray, skipDefaultListeners) {
     var defaultFactories;
     if (!skipDefaultListeners) {
         defaultFactories = exports.getDefaultFactories();
         defaultFactories.setStartTimeToNow();
     }
-
     var lazyPipesMap = {};
     for (var i = 0; i < pipesArray.length; i++) {
         var currentPipeInformation = pipesArray[i];
@@ -127,7 +126,12 @@ exports.pipeBuilder = function (pipesArray, skipDefaultListeners) {
 
         lazyPipesMap[pipeName] = exports.lazyPipeFactory(pipeFunction, calculateFinalListeners(pipeListeners, defaultFactories, pipeName));
     }
+    return lazyPipesMap;
+};
 
+exports.pipeBuilder = function (pipesArray, skipDefaultListeners) {
+
+    var lazyPipesMap = exports.createLazyPipeMap(pipesArray, skipDefaultListeners);
     var executingPipe;
     for (var i = 0; i < pipesArray.length; i++) {
         var currentPipeName = pipesArray[i].name;

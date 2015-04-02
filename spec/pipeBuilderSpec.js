@@ -1,6 +1,13 @@
 var gulp = require('gulp');
 var gulpPipeUtils = require('../');
 
+var tap = require('gulp-tap');
+var rename = require('gulp-rename');
+var filter = require('gulp-filter');
+var watch = require('gulp-watch');
+var fs = require('fs');
+var del = require('del');
+
 describe("pipe Builder", function () {
 
     it('should build task successfully', function (done) {
@@ -86,6 +93,7 @@ describe("pipe Builder", function () {
 
         gulpPipeUtils.pipeBuilder(taskDescription, true)
             .on('finish', function () {
+                console.log('about to be done with no listeners');
                 done();
             });
 
@@ -106,7 +114,7 @@ describe("pipe Builder", function () {
                     errorCallbacksCalled++;
                 },
                     function () {
-                        console.log('second finish callback');
+                        console.log('second error callback');
                         errorCallbacksCalled++;
 
                     }]
@@ -120,7 +128,7 @@ describe("pipe Builder", function () {
                 expect(errorCallbacksCalled).toBe(expectedErrorsCallled);
                 done();
             });
-        pipe.emit('error', new Error('something weng wrong'));
+        pipe.emit('error', new Error('something went wrong'));
 
     });
 
@@ -160,4 +168,39 @@ describe("pipe Builder", function () {
 
 
     });
-});
+
+    it('should build on multiple tasks', function (done) {
+
+
+        var taskDescription = [
+            {
+                name: 'src', func: function () {
+                return gulp.src('./test/fixtures/dummy');
+            }
+            },
+
+            {
+                name: 'dest', func: function () {
+                return gulp.dest('./example');
+            }
+            },
+            {
+                name: 'dest2', func: function () {
+                return gulp.dest('./example2');
+            }
+            }
+
+        ];
+
+        gulpPipeUtils.pipeBuilder(taskDescription)
+            .on('finish', function () {
+                console.log('about to be done with no listeners');
+                done();
+            });
+
+
+    });
+
+
+})
+;

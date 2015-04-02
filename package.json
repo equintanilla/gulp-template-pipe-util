@@ -1,6 +1,6 @@
 {
   "name": "gulp-template-pipe-util",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "utilities to create streams and add similar event listeners",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,14 @@
     "pretty-hrtime": "1.0.0"
   },
   "devDependencies": {
-    "jasmine": "2.2.1"
+    "del":"1.1.1",
+    "jasmine": "2.2.1",
+    "gulp-filter":"2.0.2",
+    "gulp-rename":"1.2.0",
+    "gulp-tap":"0.1.3",
+    "gulp-template-pipe-util":"0.0.6",
+    "gulp-watch":"4.2.2",
+    "vinyl-buffer":"1.0.0"
   },
   "keywords": [
     "gulp",
